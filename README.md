@@ -1,6 +1,8 @@
 # Kadge
 Kotlin badge generator
 
+Available on https://babedev.github.io/Kadge/
+
 Still many many many bugs.
 
 Todos
