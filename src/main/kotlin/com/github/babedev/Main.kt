@@ -1,75 +1,84 @@
 package com.github.babedev
 
 import jquery.jq
+import org.w3c.dom.Element
 import kotlin.browser.document
 import kotlin.dom.addClass
 
 fun main(args: Array<String>) {
     val app = document.getElementById("app")
 
-    val templateImage = document.createElement("img")
-    templateImage.id = "template"
-    templateImage.setAttribute("src", "kadge-template.png")
-    templateImage.setAttribute("width", "400px")
-    templateImage.setAttribute("height", "400px")
-    templateImage.addClass("inner-template")
-
-    val previewImage = document.createElement("img")
-    previewImage.id = "preview"
-    previewImage.setAttribute("width", "400px")
-    previewImage.setAttribute("height", "400px")
-    previewImage.addClass("inner-template")
-
-    val templateDiv = document.createElement("div")
-    templateDiv.appendChild(previewImage)
-    templateDiv.appendChild(templateImage)
-    templateDiv.addClass("column template")
-
-    val uploadInput = document.createElement("input")
-    uploadInput.id = "upload"
-    uploadInput.setAttribute("type", "file")
-    uploadInput.setAttribute("accept", "image/*")
-    uploadInput.addClass("upload-photo")
-
-    jq(uploadInput).change {
-        js("preview()")
+    val templateImage = img("template").apply {
+        setAttribute("src", "kadge-template.png")
     }
 
-    val uploadSpan = document.createElement("span")
-    uploadSpan.appendChild(document.createTextNode("Select image"))
+    val templateDiv = document.createElement("div").apply {
+        appendChild(img("preview"))
+        appendChild(templateImage)
+        addClass("column gone")
+    }
 
-    val selectImgBtn = document.createElement("a")
-    selectImgBtn.addClass("level-item button is-primary")
-    selectImgBtn.appendChild(uploadSpan)
-    selectImgBtn.appendChild(uploadInput)
-    selectImgBtn.addEventListener("click", {
-        jq(uploadInput).click()
-    })
+    val uploadInput = document.createElement("input").apply {
+        id = "upload"
+        setAttribute("type", "file")
+        setAttribute("accept", "image/*")
+        addClass("upload-photo")
 
-    val selectImgDiv = document.createElement("div")
-    selectImgDiv.addClass("columns")
-    selectImgDiv.appendChild(selectImgBtn)
+        jq(this).change {
+            js("preview()")
+        }
+    }
 
-    val canvasImage = document.createElement("canvas")
-    canvasImage.id = "profile"
+    val uploadSpan = document.createElement("span").apply {
+        appendChild(document.createTextNode("Select image"))
+    }
 
-    val canvasDiv = document.createElement("div")
-    canvasDiv.addClass("column")
-    canvasDiv.appendChild(canvasImage)
+    val selectImgBtn = document.createElement("a").apply {
+        addClass("level-item button is-primary")
+        appendChild(uploadSpan)
+        appendChild(uploadInput)
+        addEventListener("click", {
+            jq(uploadInput).click()
+        })
+    }
 
-    val imagesDiv = document.createElement("div")
-    imagesDiv.addClass("columns")
-    imagesDiv.appendChild(templateDiv)
-    imagesDiv.appendChild(canvasDiv)
+    val selectImgDiv = document.createElement("div").apply {
+        addClass("columns")
+        appendChild(selectImgBtn)
+    }
 
-    val container = document.createElement("div")
-    container.addClass("container")
-    container.appendChild(imagesDiv)
-    container.appendChild(selectImgDiv)
+    val canvasImage = document.createElement("canvas").apply {
+        id = "profile"
+    }
 
-    val section = document.createElement("section")
-    section.addClass("section")
-    section.appendChild(container)
+    val canvasDiv = document.createElement("div").apply {
+        addClass("column")
+        appendChild(canvasImage)
+    }
+
+    val imagesDiv = document.createElement("div").apply {
+        addClass("columns")
+        appendChild(canvasDiv)
+    }
+
+    val container = document.createElement("div").apply {
+        addClass("container")
+        appendChild(imagesDiv)
+        appendChild(selectImgDiv)
+        appendChild(templateDiv)
+    }
+
+    val section = document.createElement("section").apply {
+        addClass("section")
+        appendChild(container)
+    }
 
     app?.appendChild(section)
 }
+
+fun img(id: String): Element =
+        document.createElement("img").apply {
+            this.id = id
+            setAttribute("width", "400px")
+            setAttribute("height", "400px")
+        }
