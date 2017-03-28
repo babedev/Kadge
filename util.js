@@ -47,8 +47,8 @@ function createPlaceholder() {
 
 function download() {
     var stream = document.getElementById("profile").toDataURL('image/png');
-    stream = stream.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
-    stream = stream.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=download.png');
+//    stream = stream.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+//    stream = stream.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=download.png');
 
     document.getElementById("btn-download").href = stream;
     document.getElementById("btn-download").download = 'download.png'
