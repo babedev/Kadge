@@ -51,4 +51,5 @@ function download() {
     stream = stream.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=download.png');
 
     document.getElementById("btn-download").href = stream;
+    document.getElementById("btn-download").download = 'download.png'
 };
