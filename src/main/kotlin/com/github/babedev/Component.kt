@@ -54,9 +54,10 @@ class Child(val parent: Element) {
         parent.appendChild(canvas)
     }
 
-    fun a(className: String = "", onclick: () -> Unit, child: Child.() -> Unit) {
+    fun a(id: String = "", className: String = "", onclick: () -> Unit, child: Child.() -> Unit) {
         val a = element("a")
 
+        if (id.isNotBlank()) a.id = id
         if (className.isNotBlank()) a.addClass(className)
 
         a.addEventListener("click", {

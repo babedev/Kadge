@@ -81,12 +81,17 @@ var kadge_main = function (_, Kotlin) {
       closure$onclick();
     };
   }
-  Child.prototype.a_szydz1$ = function (className, onclick, child) {
+  Child.prototype.a_juj0ph$ = function (id, className, onclick, child) {
+    if (id === void 0)
+      id = '';
     if (className === void 0)
       className = '';
     var a = this.element_0('a');
-    var $receiver = className;
+    var $receiver = id;
     if (!Kotlin.kotlin.text.isBlank_gw00vp$($receiver))
+      a.id = id;
+    var $receiver_0 = className;
+    if (!Kotlin.kotlin.text.isBlank_gw00vp$($receiver_0))
       addClass(a, [className]);
     a.addEventListener('click', Child$a$lambda(onclick));
     this.parent.appendChild(a);
@@ -167,13 +172,7 @@ var kadge_main = function (_, Kotlin) {
   function main$lambda$lambda$lambda$lambda($receiver) {
     $receiver.strong_xddp9w$(main$lambda$lambda$lambda$lambda$lambda);
   }
-  function main$lambda$lambda$lambda$lambda$lambda_0($receiver) {
-    $receiver.canvas_ccskfk$('profile');
-  }
-  function main$lambda$lambda$lambda$lambda_0($receiver) {
-    $receiver.div_7h4oe2$(void 0, 'box has-text-centered', void 0, main$lambda$lambda$lambda$lambda$lambda_0);
-  }
-  function main$lambda$lambda$lambda$lambda$lambda_1() {
+  function main$lambda$lambda$lambda$lambda$lambda_0() {
     $(uploadInput).click();
   }
   function main$lambda$lambda$lambda$lambda$lambda$lambda($receiver) {
@@ -182,19 +181,34 @@ var kadge_main = function (_, Kotlin) {
   function main$lambda$lambda$lambda$lambda$lambda$lambda_0() {
     preview();
   }
-  function main$lambda$lambda$lambda$lambda$lambda_2($receiver) {
+  function main$lambda$lambda$lambda$lambda$lambda_1($receiver) {
     $receiver.span_xddp9w$(main$lambda$lambda$lambda$lambda$lambda$lambda);
     uploadInput = $receiver.inputFile_hgzy0z$('upload', 'upload-photo', main$lambda$lambda$lambda$lambda$lambda$lambda_0);
   }
-  function main$lambda$lambda$lambda$lambda_1($receiver) {
-    $receiver.a_szydz1$('level-item button is-primary', main$lambda$lambda$lambda$lambda$lambda_1, main$lambda$lambda$lambda$lambda$lambda_2);
+  function main$lambda$lambda$lambda$lambda_0($receiver) {
+    $receiver.a_juj0ph$('btn-upload', 'level-item button is-primary', main$lambda$lambda$lambda$lambda$lambda_0, main$lambda$lambda$lambda$lambda$lambda_1);
   }
-  function main$lambda$lambda$lambda$lambda$lambda_3($receiver) {
-    src($receiver, 'kadge-template.png');
+  function main$lambda$lambda$lambda$lambda$lambda_2($receiver) {
+    $receiver.canvas_ccskfk$('profile');
+  }
+  function main$lambda$lambda$lambda$lambda_1($receiver) {
+    $receiver.div_7h4oe2$(void 0, 'box', void 0, main$lambda$lambda$lambda$lambda$lambda_2);
+  }
+  function main$lambda$lambda$lambda$lambda$lambda_3() {
+    download();
+  }
+  function main$lambda$lambda$lambda$lambda$lambda_4($receiver) {
+    $receiver.text_61zpoe$('Download image');
   }
   function main$lambda$lambda$lambda$lambda_2($receiver) {
+    $receiver.a_juj0ph$('btn-download', 'level-item button is-primary', main$lambda$lambda$lambda$lambda$lambda_3, main$lambda$lambda$lambda$lambda$lambda_4);
+  }
+  function main$lambda$lambda$lambda$lambda$lambda_5($receiver) {
+    src($receiver, 'kadge-template.png');
+  }
+  function main$lambda$lambda$lambda$lambda_3($receiver) {
     $receiver.img_v32w2o$('preview');
-    $receiver.img_v32w2o$('template', void 0, void 0, main$lambda$lambda$lambda$lambda$lambda_3);
+    $receiver.img_v32w2o$('template', void 0, void 0, main$lambda$lambda$lambda$lambda$lambda_5);
   }
   function main$lambda$lambda$lambda($receiver) {
     $receiver.div_7h4oe2$(void 0, 'tile', void 0, main$lambda$lambda$lambda$lambda);
@@ -202,7 +216,9 @@ var kadge_main = function (_, Kotlin) {
     $receiver.div_7h4oe2$(void 0, 'tile', void 0, main$lambda$lambda$lambda$lambda_0);
     $receiver.br();
     $receiver.div_7h4oe2$(void 0, 'tile', void 0, main$lambda$lambda$lambda$lambda_1);
-    $receiver.div_7h4oe2$(void 0, 'gone', void 0, main$lambda$lambda$lambda$lambda_2);
+    $receiver.br();
+    $receiver.div_7h4oe2$(void 0, 'tile', void 0, main$lambda$lambda$lambda$lambda_2);
+    $receiver.div_7h4oe2$(void 0, 'gone', void 0, main$lambda$lambda$lambda$lambda_3);
   }
   function main$lambda$lambda($receiver) {
     $receiver.div_7h4oe2$(void 0, 'container', void 0, main$lambda$lambda$lambda);

@@ -18,22 +18,30 @@ fun main(args: Array<String>) {
                 br()
 
                 div(className = "tile") {
+                    a("btn-upload", "level-item button is-primary", {
+                        jq(uploadInput).click()
+                    }, {
+                        span { text("Select image") }
+
+                        uploadInput = inputFile("upload", "upload-photo") {
+                            js("preview()")
+                        }
+                    })
+                }
+
+                br()
+
+                div(className = "tile") {
                     div(className = "box") { canvas("profile") }
                 }
 
                 br()
 
                 div(className = "tile") {
-                    a("level-item button is-primary", {
-                        jq(uploadInput).click()
+                    a("btn-download", "level-item button is-primary", {
+                        js("download()")
                     }, {
-                        span {
-                            text("Select image")
-                        }
-
-                        uploadInput = inputFile("upload", "upload-photo") {
-                            js("preview()")
-                        }
+                        text("Download image")
                     })
                 }
 
