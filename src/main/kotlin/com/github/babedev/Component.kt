@@ -5,47 +5,57 @@ import org.w3c.dom.Element
 import kotlin.browser.document
 import kotlin.dom.addClass
 
-fun app(id: String = "app", child: Child.() -> Unit) {
-    val app = document.getElementById(id)
-
-    if (app != null) {
-        Child(app).apply(child)
-    }
+fun app(id: String = "app", child: Child.() -> Unit): Element {
+    val app = document.getElementById(id)!!
+    Child(app).apply(child)
+    return app
 }
 
 fun Element.src(value: String = "") {
     setAttribute("src", value)
 }
 
+fun Element.width(value: String = "") {
+    setAttribute("width", value)
+}
+
+fun Element.height(value: String = "") {
+    setAttribute("height", value)
+}
+
 class Child(val parent: Element) {
-    fun div(id: String = "", className: String = "", child: Child.() -> Unit) {
-        val div = document.createElement("div")
+    fun div(id: String = "", className: String = "", width: Int = 0, child: Child.() -> Unit) {
+        val div = element("div")
 
         if (className.isNotBlank()) div.addClass(className)
         if (id.isNotBlank()) div.id = id
+        if (width != 0) div.setAttribute("width", "${width}px")
+
         parent.appendChild(div)
 
         Child(div).apply(child)
     }
 
     fun strong(child: Child.() -> Unit) {
-        val strong = document.createElement("strong")
+        val strong = element("strong")
         parent.appendChild(strong)
         Child(strong).apply(child)
     }
 
-    fun canvas(id: String = "", width: Int = 400, height: Int = 400) {
-        val canvas = document.createElement("canvas").apply {
+    fun canvas(id: String = "", className: String = "", width: Int = 300, height: Int = 300) {
+        val canvas = element("canvas").apply {
             this.id = id
             setAttribute("width", "${width}px")
             setAttribute("height", "${height}px")
         }
 
+        if (className.isNotBlank()) canvas.addClass(className)
+
         parent.appendChild(canvas)
     }
 
     fun a(className: String = "", onclick: () -> Unit, child: Child.() -> Unit) {
-        val a = document.createElement("a")
+        val a = element("a")
 
         if (className.isNotBlank()) a.addClass(className)
 
@@ -58,7 +68,7 @@ class Child(val parent: Element) {
     }
 
     fun inputFile(id: String = "", className: String = "", onchange: () -> Unit): Element {
-        val input = document.createElement("input").apply {
+        val input = element("input").apply {
             setAttribute("type", "file")
             setAttribute("accept", "image/*")
         }
@@ -75,8 +85,8 @@ class Child(val parent: Element) {
         return input
     }
 
-    fun img(id: String = "", width: Int = 400, height: Int = 400, block: Element.() -> Unit = {}) {
-        val img = document.createElement("img").apply {
+    fun img(id: String = "", width: Int = 300, height: Int = 300, block: Element.() -> Unit = {}) {
+        val img = element("img").apply {
             this.id = id
             setAttribute("width", "${width}px")
             setAttribute("height", "${height}px")
@@ -87,7 +97,7 @@ class Child(val parent: Element) {
     }
 
     fun span(child: Child.() -> Unit) {
-        val span = document.createElement("span")
+        val span = element("span")
 
         parent.appendChild(span)
         Child(span).apply(child)
@@ -98,7 +108,10 @@ class Child(val parent: Element) {
     }
 
     fun br() {
-        parent.appendChild(document.createElement("br"))
-        parent.appendChild(document.createElement("br"))
+        parent.appendChild(element("br"))
+    }
+
+    private fun element(name: String): Element {
+        return document.createElement(name)
     }
 }

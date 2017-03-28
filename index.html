@@ -8,6 +8,7 @@
                 crossorigin="anonymous"></script>
 
         <script src="web/lib/kotlin.js"></script>
+        <script src="util.js"></script>
 
         <style>
             .upload-photo {
@@ -23,47 +24,10 @@
             .template {
                 position: relative;
             }
-
-            .inner-template {
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
         </style>
     </head>
     <body>
         <div id="app"></div>
         <script src="web/kadge_main.js"></script>
-
-        <script>
-            function preview() {
-                var file = $("#upload")[0].files[0]
-
-                if (file) {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function(e) {
-                        $('#preview').attr('src', e.target.result);
-
-                        createProfileImage();
-                    };
-                }
-            }
-
-            function createProfileImage() {
-                var img1 = document.getElementById('preview');
-                var img2 = new Image();
-                img2.src = 'kadge-template.png';
-
-                var canvas = document.getElementById('profile');
-                var context = canvas.getContext('2d');
-
-                canvas.width = img1.width;
-                canvas.height = img1.height;
-
-                context.drawImage(img1, 0, 0, 400, 400);
-                context.drawImage(img2, 0, 0, 400, 400);
-            }
-        </script>
     </body>
 </html>

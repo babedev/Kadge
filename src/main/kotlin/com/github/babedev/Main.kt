@@ -3,6 +3,7 @@ package com.github.babedev
 import jquery.jq
 import org.w3c.dom.Element
 import kotlin.browser.document
+import kotlin.browser.window
 
 var uploadInput: Element = document.createElement("div")
 
@@ -10,19 +11,19 @@ fun main(args: Array<String>) {
     app {
         div(className = "section") {
             div(className = "container") {
-                strong {
-                    text("Kotlin badge generator")
+                div(className = "tile") {
+                    strong { text("Kotlin badge generator") }
                 }
 
                 br()
 
-                div(className = "columns") {
-                    div(className = "column") {
-                        canvas("profile")
-                    }
+                div(className = "tile") {
+                    div(className = "box") { canvas("profile") }
                 }
 
-                div(className = "columns") {
+                br()
+
+                div(className = "tile") {
                     a("level-item button is-primary", {
                         jq(uploadInput).click()
                     }, {
@@ -36,14 +37,16 @@ fun main(args: Array<String>) {
                     })
                 }
 
-                div(className = "column gone") {
+                div(className = "gone") {
                     img("preview")
 
-                    img("template") {
-                        src("kadge-template.png")
-                    }
+                    img("template") { src("kadge-template.png") }
                 }
             }
         }
+    }
+
+    window.onload = {
+        js("createPlaceholder()")
     }
 }
